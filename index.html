@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="bootstrap.js"></script>
+
+    <script type="text/javascript">
+
+    var dataArray;
+
+    $.getJSON('EN378_table1_data.json', function(data) {
+            dataArray=data;
+            for( var index in data ) {
+        $('#gasList').append('<li><a href="#">R'+data[index].Refrigerant_number+'</a></li>');
+      }
+    });
+
+      $(document).ready(function(){
+        $(function(){
+            $(".dropdown-menu").on("click", "li", function(event){
+              $('#text').text($(this).text());
+              for (var k in dataArray) {
+                  if (('R'+dataArray[k].Refrigerant_number)=== $(this).text()) {
+                    $('#namn').text('Chemical name: '+dataArray[k].Chemical_name);
+                    $('#composition').text('Composition:'+dataArray[k].Composition);
+                    $('#chemical_formula').text('Chemical formula: '+dataArray[k].Chemical_formula);
+                    $('#mixture_tolerance').text('Mixture tolerance: '+dataArray[k].Mixture_tolerance);
+                    $('#safety_class').text('Safety class: '+dataArray[k].Safety_class);
+                    $('#ped').text('PED: '+dataArray[k].PED);
+                    $('#practical_limit_kg_m3').text('Practical limit kg/m3: '+dataArray[k].Practical_limit__kg_m3_);
+                    $('#atel_odl_kg_m3').text('ATEL ODL kg/m3: '+dataArray[k].ATEL_ODL__kg_m3_);
+                    $('#lfl_kg_m3').text('LFL kg/m3: '+dataArray[k].LFL__kg_m3_);
+                    $('#vapour_density_25c_101_3_kpaa_kg_m3').text('Vapour density 25C 101 3 kPaa kg/m3: '+dataArray[k].Vapour_density_25C__101_3_kPaa__kg_m3__);
+                    $('#molecular_mass').text('Molecular mass: '+dataArray[k].Molecular_mass);
+                    $('#normal_boiling_point_c').text('Normal boiling point deg. C: '+dataArray[k].Normal_boiling_point__C_);
+                    $('#odp').text('ODP: '+dataArray[k].ODP_);
+                    $('#gwp_100yr_ith').text('GWP 100yr ITH: '+dataArray[k].GWP__100yr_ITH_);
+                    $('#gwp_ar5_100yr_ith').text('GWP AR5  100yr ITH: '+dataArray[k].GWP__AR5___100yr_ITH_);
+                    $('#autoignition_temperature_c').text('Autoignition temperature deg. C: '+dataArray[k].Autoignition__temperature__C_);
+                  }
+              }
+            })
+        })
+
+
+          // $.getJSON('EN378_table1_data.json', function(data) {
+          //   for (var k in data) {
+          //       console.log('------------------------------------');
+          //       console.log('R'+data[k].Refrigerant_number+':');
+          //       console.log('Practical limit: '+data[k].Practical_limit__kg_m3_+' kg/m3');
+          //       console.log('Chemical name: '+data[k].Chemical_name);
+          //   }
+          // });
+      });
+
+    </script>
+
+  </head>
+
+  <body>
+    <ul class="nav nav-pills left">
+      <li class="dropdown active span8">
+        <a class="dropdown-toggle" id="dataBox" data-toggle="dropdown">
+          <span id="text">Select</span><span class="caret"></span></a>
+        <ul id="gasList" class="dropdown-menu">
+        </ul>
+      </li>
+    </ul>
+
+    <p id="namn"></p>
+    <p id="composition"></p>
+    <p id="chemical_formula"></p>
+    <p id="mixture_tolerance"></p>
+    <p id="safety_class"></p>
+    <p id="ped"></p>
+    <p id="practical_limit_kg_m3"></p>
+    <p id="atel_odl_kg_m3"></p>
+    <p id="lfl_kg_m3"></p>
+    <p id="vapour_density_25c_101_3_kpaa_kg_m3"></p>
+    <p id="molecular_mass"></p>
+    <p id="normal_boiling_point_c"></p>
+    <p id="odp"></p>
+    <p id="gwp_100yr_ith"></p>
+    <p id="gwp_ar5_100yr_ith"></p>
+    <p id="autoignition_temperature_c"></p>
+  </body>
+</html>
